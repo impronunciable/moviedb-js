@@ -1,21 +1,21 @@
+/**
+ * @author Dan Zajdband <dan.zajdband@gmail.com>
+ * @version 0.0.1
+ */
 
-/*
+/**
  * Module dependencies
  */
 var request = require('superagent');
 
-/*
- * Constants
- */
-
+/** @constant {String} */
 var API_BASE_URL = "https://api.themoviedb.org/3/";
 
 
-/*
- * Constructor
- *
- * @param {String} API key
- * @api public
+/**
+ * @constructor
+ * @param {String} api_key - API key
+ * @public
  */
 function MovieDB(api_key) {
   if(!(this instanceof MovieDB)) {
@@ -29,14 +29,13 @@ function MovieDB(api_key) {
   this.api_key = api_key;
 }
 
-/*
+/**
  * GET requests
- *
  * @param {String} endpoint
- * @param {Object} query options
- * @param {Function} callback
+ * @param {Object} opts - query options
+ * @param {Function} fn - callback
+ * @public
  */
-
 MovieDB.prototype.get = function(endpoint, opts, fn) {
   var self = this;
   opts.api_key = this.api_key;
@@ -50,14 +49,13 @@ MovieDB.prototype.get = function(endpoint, opts, fn) {
     });
 };
 
-/*
+/**
  * POST requests
- *
  * @param {String} endpoint
- * @param {Object} request body
- * @param {Function} callback
+ * @param {Object} opts - query options
+ * @param {Function} fn - callback
+ * @public
  */
-
 MovieDB.prototype.post = function(endpoint, opts, fn) {
   var self = this;
 
@@ -71,11 +69,11 @@ MovieDB.prototype.post = function(endpoint, opts, fn) {
     });
 };
 
-
-/*
+/**
  * Auto configuration
+ * @param {Function} fn - callback
+ * @public
  */
-
 MovieDB.prototype.configure = function(fn) {
   this.get('configuration', {}, function(err, res){
     this.config = this.config || {};
@@ -85,14 +83,13 @@ MovieDB.prototype.configure = function(fn) {
   });
 };
 
-/*
+/**
  * Get full image url (first need to query "configure")
- *
- * @param {String} Image path
- * @param {String} Image size (defaults to original)
- * @return {String} full url
+ * @param {String} path - Image path
+ * @param {String} size - Image size (defaults to original)
+ * @returns {String} full url
+ * @public
  */
-
 MovieDB.prototype.getImageURL = function(path, size) {
   if(!this.config) {
     throw new Error("Please fetch config first via MovieDB#configure() method.");
@@ -100,13 +97,12 @@ MovieDB.prototype.getImageURL = function(path, size) {
   return this.secure_base_url + (size || "original") + path;
 };
 
-/*
+/**
  * Get config image sizes (first need to query "configure")
- *
  * @param {String} poster | backdrop | profile | logo
- * @return {Array} Image sizes
+ * @returns {Array} Image sizes
+ * @public
  */
-
 MovieDB.prototype.getImageSizes = function(type) {
   if(this.config) {
     return this.config[type + "_sizes"];
@@ -117,5 +113,6 @@ MovieDB.prototype.getImageSizes = function(type) {
 
 /*
  * Expose the constructor
+ * @exports MovieDB
  */
 module.exports = MovieDB;

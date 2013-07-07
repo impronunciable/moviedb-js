@@ -3,7 +3,8 @@
   "repo": "danzajdband/moviedb-js",
   "description": "theMovieDB.org API wrapper",
   "version": "0.0.1",
-  "keywords": [],
+  "author": "Dan Zajdband <dan.zajdband@gmail.com>",
+  "keywords": ["movies", "API", "theMovieDB.org"],
   "dependencies": {
     "visionmedia/superagent": "*"
   },
