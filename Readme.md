@@ -11,14 +11,14 @@
 
 ## API
 
-MovieDB(api_key)
-----------------
+### MovieDB(api_key)
+
 **Parameters**
 
 **api_key**:  *String* - API key
 
-get(endpoint, opts, fn)
------------------------
+### get(endpoint, opts, fn)
+
 GET requests
 
 
@@ -30,8 +30,8 @@ GET requests
 
 **fn**:  *Function*  - callback
 
-post(endpoint, opts, fn)
-------------------------
+### post(endpoint, opts, fn)
+
 POST requests
 
 
@@ -43,8 +43,8 @@ POST requests
 
 **fn**:  *Function*  - callback
 
-configure(fn)
--------------
+### configure(fn)
+
 Auto configuration
 
 
@@ -52,8 +52,8 @@ Auto configuration
 
 **fn**:  *Function*  - callback
 
-getImageURL(path, size)
------------------------
+### getImageURL(path, size)
+
 Get full image url (first need to query "configure")
 
 
@@ -67,8 +67,8 @@ Get full image url (first need to query "configure")
 
 *String*  full url
 
-getImageSizes(poster)
----------------------
+### getImageSizes(poster)
+
 Get config image sizes (first need to query "configure")
 
 
